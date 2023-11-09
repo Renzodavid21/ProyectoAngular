@@ -1,0 +1,58 @@
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Dni</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of studentList">
+            <td>{{student.id}}</td>
+            <td>{{student.dni}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.firstName}}</td>
+            <td>{{student.email}}<td>
+            <td><button (click)="view(ver, student)">Ver</button></td>
+            <td><button (click)="delete(student.id)">Borrar</button></td>
+    </tbody>
+</table> 
+<form [formGroup]="studentForm">
+        
+   
+    <input formControlName="dni">
+    <p *ngIf="dni.touched && dni.errors?.required">campo obligatorio</p>
+    <input formControlName="lastName">
+    <p *ngIf="lastName.touched && lastName.errors?.required">campo obligatorio</p>
+    <input formControlName="firstName">
+    <p *ngIf="firstName.touched && firstName.errors?.required">campo obligatorio</p>
+    <input formControlName="email">
+    <p *ngIf="email.touched && email.errors?.required">campo obligatorio</p>
+    <button (click)="add()">Agregar</button>
+         
+    
+</form>
+    
+
+<ng-template #ver let-modal>
+    <div class="modal-header">
+
+    </div>
+    <div class="modal-body">
+        <label>Id:</label>
+        <input class="form-control" [(ngModel)]="id2" readonly>
+        <label>Dni:</label>
+        <input class="form-control" [(ngModel)]="dni2" ngbAutofocus>
+        <label>Last Name:</label>
+        <input class="form-control" [(ngModel)]="lastName2">
+        <label>First Name:</label>
+        <input class="form-control" [(ngModel)]="firstName2">
+        <label>Email:</label>
+        <input class="form-control" [(ngModel)]="email2">
+    </div>
+    <div class="modal.footer">
+    <button class="btn btn-primary" (click)="modal.close()">Guardar</button>
+    </div>
+</ng-template>
